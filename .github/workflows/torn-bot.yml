@@ -1,7 +1,7 @@
 name: Torn Waste Bot
 on:
   schedule:
-    - cron: '*/5 * * * *'
+    - cron: "*/5 * * * *"
   workflow_dispatch:
 jobs:
   waste-search:
@@ -10,14 +10,9 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       - run: cd cdp_bot && npm install
       - env:
           TORN_EMAIL: ${{ secrets.TORN_EMAIL }}
           TORN_PASSWORD: ${{ secrets.TORN_PASSWORD }}
         run: cd cdp_bot && node bot.js
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: waste-logs
-          path: cdp_bot/waste_logs.txt
