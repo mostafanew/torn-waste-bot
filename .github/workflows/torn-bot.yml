@@ -1,3 +1,45 @@
+name: 🗑️ Torn Waste Finder Bot
+
+on:
+  schedule:
+    # يعمل كل 5 دقائق = 288 مرة/يوم = أقل من 10% من الحصة المجانية
+    - cron: '*/5 * * * *'
+
+  # يمكنك تشغيله يدويًا أيضًا
+  workflow_dispatch:
+
+jobs:
+  waste-search:
+    runs-on: ubuntu-latest
+  
+    steps:
+      - name: 📥 تحميل الكود
+        uses: actions/checkout@v4
+
+      - name: 🔧 تثبيت Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: 📦 تثبيت المكتبات
+        run: |
+          cd cdp_bot
+          npm install
+
+      - name: 🤖 تشغيل البوت
+        env:
+          TORN_EMAIL: ${{ secrets.TORN_EMAIL }}
+          TORN_PASSWORD: ${{ secrets.TORN_PASSWORD }}
+        run: |
+          cd cdp_bot
+          node bot.js
+      
+      - name: 📤 رفع السجلات
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: waste-logs
+          path: cdp_bot/waste_logs.txt
 name: Torn Waste Bot
 on:
   schedule:
