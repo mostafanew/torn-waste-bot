@@ -1,7 +1,7 @@
 name: Telegram Bot
 on:
   schedule:
-    - cron: '0 8 * * *'
+    - cron: "0 8 * * *"
   workflow_dispatch:
 jobs:
   send-message:
@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: "20"
       - run: cd cdp_bot && npm install
       - env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
