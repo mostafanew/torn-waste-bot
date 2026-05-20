@@ -1,0 +1,5 @@
+node_modules/
+torn_session.json
+waste_logs.txt
+*.log
+.env
