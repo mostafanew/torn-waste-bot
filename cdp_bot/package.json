@@ -1,9 +1,5 @@
 {
   "name": "torn-waste-bot",
   "version": "1.0.0",
-  "description": "مجاني تمامًا - بدون بطاقة بنكية",
-  "main": "bot.js",
-  "dependencies": {
-    "puppeteer": "^22.0.0"
-  }
+  "dependencies": {}
 }
